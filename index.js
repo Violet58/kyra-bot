@@ -140,6 +140,5 @@ ${confession}`);
     await msg.react('💔');
   }
 });
-  });
 
 client.login(process.env.TOKEN);
