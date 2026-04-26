@@ -78,22 +78,7 @@ Continue assim para manter o cargo amanhã 👑
 <@&1365086815144644698> 
 <@&1370462756511416320>`);
 }
-
-    // pega top
-    let topUser = null;
-    let max = 0;
-
-    for (const userId in messageCount) {
-      if (messageCount[userId] > max) {
-        max = messageCount[userId];
-        topUser = userId;
-      }
-    }
-
-    if (!topUser) return;
-
-    const member = await guild.members.fetch(topUser);
-
+    
     // remove do antigo
     if (lastWinner) {
       const oldMember = await guild.members.fetch(lastWinner).catch(() => null);
