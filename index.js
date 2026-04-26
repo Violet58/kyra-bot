@@ -59,7 +59,9 @@ if (channel) {
 👤 Usuário: ${member}
 💬 Mensagens: ${max}
 
-Continue assim para manter o cargo amanhã 👑`);
+Continue assim para manter o cargo amanhã 👑
+<@&1365086815144644698> 
+<@&1370462756511416320>`);
 }
 
     // pega top
