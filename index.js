@@ -21,9 +21,10 @@ const client = new Client({
   ]
 });
 
-client.on('messageCreate', (message) => {
-  console.log('ENTROU EVENTO');
-});
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
+
+  console.log('MSG:', message.content);
 
 // 🔢 contador de mensagens
 let messageCount = {};
@@ -39,13 +40,8 @@ client.on('messageCreate', message => {
   if (message.author.bot) return;
 
   const userId = message.author.id;
-
-  if (!messageCount[userId]) {
-    messageCount[userId] = 0;
-  }
-
+  if (!messageCount[userId]) messageCount[userId] = 0;
   messageCount[userId]++;
-});
 
 // ⏰ função que roda todo minuto
 setInterval(async () => {
@@ -55,6 +51,20 @@ setInterval(async () => {
   if (now.getHours() === 0 && now.getMinutes() === 0) {
     const guild = client.guilds.cache.first();
     if (!guild) return;
+
+       let topUser = null;
+    let max = 0;
+
+    for (const id in messageCount) {
+      if (messageCount[id] > max) {
+        max = messageCount[id];
+        topUser = id;
+      }
+    }
+
+    if (!topUser) return;
+
+    const member = await guild.members.fetch(topUser);
 
     const channel = await client.channels.fetch(CHANNEL_ID);
 
@@ -109,32 +119,20 @@ const cooldown = new Set();
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
-  // 💌 CONFISSÃO
+  // confissão
+  const cooldown = new Set();
+
   if (message.content.startsWith('!confissao')) {
     const confession = message.content.slice(11).trim();
 
-    if (!confession) {
-      return message.reply('Escreva uma confissão.');
-    }
-
-    if (cooldown.has(message.author.id)) {
-      return message.reply('Espere um pouco antes de enviar outra confissão.');
-    }
-
-    cooldown.add(message.author.id);
-    setTimeout(() => cooldown.delete(message.author.id), 60000);
+    if (!confession) return message.reply('Escreva uma confissão.');
 
     const channel = await client.channels.fetch(CONFESSION_CHANNEL_ID);
     if (!channel) return;
 
-    if (!message.guild) {
-      await message.reply('💌 Sua confissão foi enviada anonimamente!');
-    } else {
-      await message.delete().catch(() => {});
-    }
+    if (message.guild) await message.delete().catch(() => {});
 
-    const msg = await channel.send(`💌 **Confissão Anônima:**
-${confession}`);
+    const msg = await channel.send(`💌 **Confissão Anônima:**\n${confession}`);
 
     await msg.react('❤️');
     await msg.react('💔');
