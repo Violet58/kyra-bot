@@ -102,52 +102,41 @@ Continue assim para manter o cargo amanhã 👑
   }
 }, 60000);
 
-if (message.content.startsWith('!confissao')) {
-  const confession = message.content.slice(11).trim();
+const cooldown = new Set();
 
-  // confissões
-  if (!confession) {
-    return message.reply('Escreva uma confissão.');
-  }
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
 
-  const channel = await client.channels.fetch(CONFESSION_CHANNEL_ID);
+  // 💌 CONFISSÃO
+  if (message.content.startsWith('!confissao')) {
+    const confession = message.content.slice(11).trim();
 
-  if (!channel) return;
+    if (!confession) {
+      return message.reply('Escreva uma confissão.');
+    }
 
-  // se for DM
-  if (!message.guild) {
-    await message.reply('💌 Sua confissão foi enviada anonimamente!');
+    if (cooldown.has(message.author.id)) {
+      return message.reply('Espere um pouco antes de enviar outra confissão.');
+    }
+
+    cooldown.add(message.author.id);
+    setTimeout(() => cooldown.delete(message.author.id), 60000);
+
+    const channel = await client.channels.fetch(CONFESSION_CHANNEL_ID);
+    if (!channel) return;
+
+    if (!message.guild) {
+      await message.reply('💌 Sua confissão foi enviada anonimamente!');
+    } else {
+      await message.delete().catch(() => {});
+    }
 
     const msg = await channel.send(`💌 **Confissão Anônima:**
 ${confession}`);
 
-await msg.react('❤️');
-await msg.react('💔');
-    return;
+    await msg.react('❤️');
+    await msg.react('💔');
   }
-
-  // se for no servidor
-  await message.delete().catch(() => {});
-  const msg = await channel.send(`💌 **Confissão Anônima:**
-${confession}`);
-
-await msg.react('❤️');
-await msg.react('💔');
-}
-
-const cooldown = new Set();
-
-if (cooldown.has(message.author.id)) {
-  return message.reply('Espere um pouco antes de enviar outra confissão.');
-}
-
-cooldown.add(message.author.id);
-setTimeout(() => cooldown.delete(message.author.id), 60000);
-
-  });
-
-client.once('clientReady', () => {
-  console.log(`Kyra está online como ${client.user.tag}`);
 });
 
 client.login(process.env.TOKEN);
