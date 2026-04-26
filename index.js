@@ -21,6 +21,9 @@ const client = new Client({
   ]
 });
 
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
+
 // 🔢 contador de mensagens
 let messageCount = {};
 
@@ -103,6 +106,7 @@ Continue assim para manter o cargo amanhã 👑
 if (message.content.startsWith('!confissao')) {
   const confession = message.content.slice(11).trim();
 
+  // confissões
   if (!confession) {
     return message.reply('Escreva uma confissão.');
   }
