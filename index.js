@@ -115,15 +115,21 @@ if (message.content.startsWith('!confissao')) {
   if (!message.guild) {
     await message.reply('💌 Sua confissão foi enviada anonimamente!');
 
-    channel.send(`💌 **Confissão Anônima:**
+    const msg = await channel.send(`💌 **Confissão Anônima:**
 ${confession}`);
+
+await msg.react('❤️');
+await msg.react('💔');
     return;
   }
 
   // se for no servidor
   await message.delete().catch(() => {});
-  channel.send(`💌 **Confissão Anônima:**
+  const msg = await channel.send(`💌 **Confissão Anônima:**
 ${confession}`);
+
+await msg.react('❤️');
+await msg.react('💔');
 }
 
 const cooldown = new Set();
