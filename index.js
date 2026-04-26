@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const CHANNEL_ID = "ID_DO_CANAL_AQUI";
+const CHANNEL_ID = "1370461259232837784";
 
 app.get('/', (req, res) => {
   res.send('Kyra está viva!');
