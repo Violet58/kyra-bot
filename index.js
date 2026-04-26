@@ -21,8 +21,8 @@ const client = new Client({
   ]
 });
 
-client.on('messageCreate', async (message) => {
-  console.log('mensagem recebida:', message.content);
+client.on('messageCreate', (message) => {
+  console.log('ENTROU EVENTO');
 });
 
 // 🔢 contador de mensagens
