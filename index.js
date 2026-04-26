@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const CHANNEL_ID = "1370461259232837784";
+const CONFESSION_CHANNEL_ID = "1497866472439943308";
 
 app.get('/', (req, res) => {
   res.send('Kyra está viva!');
@@ -98,6 +99,41 @@ Continue assim para manter o cargo amanhã 👑
     messageCount = {};
   }
 }, 60000);
+
+if (message.content.startsWith('!confissao')) {
+  const confession = message.content.slice(11).trim();
+
+  if (!confession) {
+    return message.reply('Escreva uma confissão.');
+  }
+
+  const channel = await client.channels.fetch(CONFESSION_CHANNEL_ID);
+
+  if (!channel) return;
+
+  // se for DM
+  if (!message.guild) {
+    await message.reply('💌 Sua confissão foi enviada anonimamente!');
+
+    channel.send(`💌 **Confissão Anônima:**
+${confession}`);
+    return;
+  }
+
+  // se for no servidor
+  await message.delete().catch(() => {});
+  channel.send(`💌 **Confissão Anônima:**
+${confession}`);
+}
+
+const cooldown = new Set();
+
+if (cooldown.has(message.author.id)) {
+  return message.reply('Espere um pouco antes de enviar outra confissão.');
+}
+
+cooldown.add(message.author.id);
+setTimeout(() => cooldown.delete(message.author.id), 60000);
 
 client.once('clientReady', () => {
   console.log(`Kyra está online como ${client.user.tag}`);
