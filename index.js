@@ -54,7 +54,12 @@ setInterval(async () => {
     const channel = await client.channels.fetch(CHANNEL_ID);
 
 if (channel) {
-  channel.send(`👑 | ${member} é o mais ativo do dia com **${max} mensagens!**`);
+  channel.send(`# ✨ **Novo Ativo do Dia!**
+
+👤 Usuário: ${member}
+💬 Mensagens: ${max}
+
+Continue assim para manter o cargo amanhã 👑`);
 }
 
     // pega top
