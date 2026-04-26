@@ -21,8 +21,9 @@ const client = new Client({
   ]
 });
 
-client.on('messageCreate', async (message) => {
+client.on('messageCreate', async (message)) => {
   if (message.author.bot) return;
+}
 
 // 🔢 contador de mensagens
 let messageCount = {};
