@@ -21,15 +21,12 @@ const client = new Client({
   ]
 });
 
-client.on('messageCreate', async (message) => {
+client.on('messageCreate', message => {
   if (message.author.bot) return;
 
-  console.log('MSG RECEBIDA:', message.content);
-
-  if (message.content === '!teste') {
-    console.log('COMANDO FUNCIONOU');
-    await message.reply('FUNCIONEI 🔥');
-  }
+  const userId = message.author.id;
+  if (!messageCount[userId]) messageCount[userId] = 0;
+  messageCount[userId]++;
 });
 
 // 🔢 contador de mensagens
