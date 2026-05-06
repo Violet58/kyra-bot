@@ -13,14 +13,17 @@ app.listen(PORT, () => {
   console.log(`Servidor web ativo na porta ${PORT}`);
 });
 
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
 
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.DirectMessages,
     GatewayIntentBits.MessageContent
-  ]
+  ],
+
+  partials: [Partials.Channel]
 });
 
 client.on('messageCreate', message => {
