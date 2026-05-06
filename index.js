@@ -48,6 +48,7 @@ client.on('messageCreate'), message => {
   const userId = message.author.id;
   if (!messageCount[userId]) messageCount[userId] = 0;
   messageCount[userId]++;
+}
 
 // ⏰ função que roda todo minuto
 setInterval(async () => {
