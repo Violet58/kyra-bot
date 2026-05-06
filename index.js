@@ -24,7 +24,13 @@ const client = new Client({
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
-  console.log('MSG:', message.content);
+  console.log('MSG RECEBIDA:', message.content);
+
+  if (message.content === '!teste') {
+    console.log('COMANDO FUNCIONOU');
+    await message.reply('FUNCIONEI 🔥');
+  }
+});
 
 // 🔢 contador de mensagens
 let messageCount = {};
