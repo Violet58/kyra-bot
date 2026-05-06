@@ -41,13 +41,17 @@ const ROLE_ID = "1497852631018901626";
 let lastWinner = null;
 
 // 📩 contar mensagens
-client.on('messageCreate'), message => {
+client.on('messageCreate', message => {
   if (message.author.bot) return;
 
   const userId = message.author.id;
-  if (!messageCount[userId]) messageCount[userId] = 0;
+
+  if (!messageCount[userId]) {
+    messageCount[userId] = 0;
+  }
+
   messageCount[userId]++;
-}
+});
 
 // ⏰ função que roda todo minuto
 setInterval(async () => {
