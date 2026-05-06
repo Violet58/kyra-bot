@@ -114,23 +114,29 @@ const cooldown = new Set();
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
-  // confissão
-  const cooldown = new Set();
+  // verifica se é DM
+  if (!message.guild) {
 
-  if (message.content.startsWith('!confissao')) {
-    const confession = message.content.slice(11).trim();
+    const confession = message.content.trim();
 
-    if (!confession) return message.reply('Escreva uma confissão.');
+    if (!confession) return;
 
     const channel = await client.channels.fetch(CONFESSION_CHANNEL_ID);
+
     if (!channel) return;
 
-    if (message.guild) await message.delete().catch(() => {});
+    // envia a confissão anônima
+    const msg = await channel.send(
+`💌 **Confissão Anônima:**
 
-    const msg = await channel.send(`💌 **Confissão Anônima:**\n${confession}`);
+${confession}`
+    );
 
     await msg.react('❤️');
     await msg.react('💔');
+
+    // responde na DM
+    await message.reply('✅ Sua confissão foi enviada anonimamente.');
   }
 });
 
