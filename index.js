@@ -71,15 +71,16 @@ client.on('messageCreate', async (message) => {
   // CONTADOR DE MENSAGENS
   // ====================================
 
-  if (message.guild) {
+  if (message.guild && message.channel.id === CHANNEL_ID) {
 
-    const userId = message.author.id;
+  const userId = message.author.id;
 
-    if (!messageCount[userId]) {
-      messageCount[userId] = 0;
-    }
+  if (!messageCount[userId]) {
+    messageCount[userId] = 0;
+  }
 
-    messageCount[userId]++;
+  messageCount[userId]++;
+  }
 
     console.log(
       `${message.author.tag}: ${messageCount[userId]} mensagens`
