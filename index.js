@@ -72,6 +72,7 @@ client.on('messageCreate', async (message) => {
   // ====================================
 
   if (message.guild && message.channel.id === CHANNEL_ID) {
+if (message.guild && message.channel.id === CHANNEL_ID) {
 
   const userId = message.author.id;
 
@@ -80,12 +81,11 @@ client.on('messageCreate', async (message) => {
   }
 
   messageCount[userId]++;
-}
-    
-    console.log(
-      `${message.author.tag}: ${messageCount[userId]} mensagens`
-    );
 
+  console.log(
+    `${message.author.tag}: ${messageCount[userId]} mensagens`
+  );
+}
   // ====================================
   // COMANDO TESTE
   // ====================================
