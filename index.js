@@ -85,8 +85,6 @@ client.on('messageCreate', async (message) => {
     console.log(
       `${message.author.tag}: ${messageCount[userId]} mensagens`
     );
-  }
-          );
 
   // ====================================
   // COMANDO TESTE
