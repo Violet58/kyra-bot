@@ -80,12 +80,12 @@ client.on('messageCreate', async (message) => {
   }
 
   messageCount[userId]++;
-
+});
+    
     console.log(
       `${message.author.tag}: ${messageCount[userId]} mensagens`
     );
   }
-  });
 
   // ====================================
   // COMANDO TESTE
