@@ -248,4 +248,9 @@ Continue assim para manter o cargo amanhã 👑`
 // LOGIN
 // =========================
 
+process.on('unhandledRejection', (reason) => {
+  console.log('❌ ERRO NÃO TRATADO:');
+  console.log(reason);
+});
+
 client.login(process.env.TOKEN);
