@@ -223,6 +223,11 @@ Continue assim para manter o cargo amanhã 👑`
 
     // adiciona cargo novo
 
+    const role = guild.roles.cache.get(ROLE_ID);
+
+console.log('ROLE_ID:', ROLE_ID);
+console.log('ROLE ENCONTRADO:', role);
+
     try {
   await member.roles.add(ROLE_ID);
   console.log('✅ Cargo adicionado');
