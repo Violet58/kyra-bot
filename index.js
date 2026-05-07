@@ -71,7 +71,7 @@ client.on('messageCreate', async (message) => {
   // CONTADOR DE MENSAGENS
   // ====================================
 
-if (message.guild && message.channel.id === CHANNEL_ID) {
+if (message.guild) {
 
   const userId = message.author.id;
 
