@@ -94,13 +94,15 @@ client.on('messageCreate', async (message) => {
     await message.reply('FUNCIONEI 🔥');
   }
 
-  // ====================================
-  // CONFISSÃO POR DM
-  // ====================================
+// ====================================
+// CONFISSÃO POR DM
+// ====================================
 
-  if (!message.guild) {
+if (!message.guild) {
 
-    console.log('DM recebida:', message.content);
+  try {
+
+    console.log('📩 DM recebida:', message.content);
 
     const confession = message.content.trim();
 
@@ -111,7 +113,7 @@ client.on('messageCreate', async (message) => {
     );
 
     if (!channel) {
-      console.log('❌ Canal de confissão não encontrado');
+      console.log('❌ Canal não encontrado');
       return;
     }
 
@@ -124,11 +126,22 @@ ${confession}`
     await msg.react('❤️');
     await msg.react('💔');
 
-    await message.author.send(
-      '✅ Sua confissão foi enviada anonimamente.'
-    );
+    console.log('✅ Confissão enviada');
+
+    try {
+      await message.author.send(
+        '✅ Sua confissão foi enviada anonimamente.'
+      );
+    } catch {
+      console.log('⚠️ Não consegui responder a DM');
+    }
+
+  } catch (err) {
+
+    console.log('❌ ERRO NA CONFISSÃO:');
+    console.log(err);
   }
-});
+}
 
 // =========================
 // MAIS ATIVO DO DIA
@@ -212,9 +225,13 @@ Continue assim para manter o cargo amanhã 👑
 
     // adiciona cargo novo
 
-    await member.roles
-      .add(ROLE_ID)
-      .catch(() => {});
+    try {
+  await member.roles.add(ROLE_ID);
+  console.log('✅ Cargo adicionado');
+} catch (err) {
+  console.log('❌ ERRO AO ADICIONAR CARGO:');
+  console.log(err);
+    }
 
     lastWinner = topUser;
 
