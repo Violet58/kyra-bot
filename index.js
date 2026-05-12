@@ -152,7 +152,7 @@ setInterval(async () => {
 
   const now = new Date();
 
-  if (now.getHours() === 0 && now.getMinutes() === 0) {
+  if (now.getHours() === 22 && now.getMinutes() === 0) {
 
     const guild = client.guilds.cache.get("1360398013666689166");
 
