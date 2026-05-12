@@ -158,7 +158,7 @@ setInterval(async () => {
 
   if (now.getMinutes() % 1 === 0) {
 
-    const guild = client.guilds.cache.get("ID_DO_SEU_SERVIDOR");
+    const guild = client.guilds.cache.get("1360398013666689166");
 
     if (!guild) {
       console.log('❌ Nenhum servidor encontrado');
