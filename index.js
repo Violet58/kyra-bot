@@ -13,7 +13,7 @@ const {
 
 const CHANNEL_ID = "1370461259232837784";
 const CONFESSION_CHANNEL_ID = "1497866472439943308";
-const ROLE_ID = "1371566976039649421";
+const ROLE_ID = "1497852631018901626";
 
 // =========================
 // EXPRESS
@@ -158,7 +158,7 @@ setInterval(async () => {
 
   if (now.getMinutes() % 1 === 0) {
 
-    const guild = client.guilds.cache.first();
+    const guild = client.guilds.cache.get("ID_DO_SEU_SERVIDOR");
 
     if (!guild) {
       console.log('❌ Nenhum servidor encontrado');
