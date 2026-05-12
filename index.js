@@ -65,6 +65,14 @@ client.on('ready', () => {
 // =========================
 
 client.on('messageCreate', async (message) => {
+
+  console.log(
+  'MSG:',
+  message.content,
+  'DM:',
+  !message.guild
+);
+  
   if (message.author.bot) return;
 
   // ====================================
