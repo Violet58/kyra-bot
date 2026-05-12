@@ -148,15 +148,11 @@ ${confession}`
 // MAIS ATIVO DO DIA
 // =========================
 
-// TESTE: executa TODO minuto
-// depois troque pra:
-// if (now.getHours() === 0 && now.getMinutes() === 0)
-
 setInterval(async () => {
 
   const now = new Date();
 
-  if (now.getMinutes() % 1 === 0) {
+  if (now.getHours() === 0 && now.getMinutes() === 0) {
 
     const guild = client.guilds.cache.get("1360398013666689166");
 
