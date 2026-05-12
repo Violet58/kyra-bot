@@ -42,7 +42,11 @@ const client = new Client({
     GatewayIntentBits.GuildMembers
   ],
 
-  partials: [Partials.Channel]
+  partials: [
+    Partials.Channel,
+    Partials.Message,
+    Partials.User
+  ]
 });
 
 // =========================
