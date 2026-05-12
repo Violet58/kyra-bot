@@ -206,7 +206,11 @@ setInterval(async () => {
 👤 Usuário: ${member}
 💬 Mensagens: ${max}
 
-Continue assim para manter o cargo amanhã 👑`
+Continue assim para manter o cargo amanhã 👑
+
+<@&1370462756511416320> 
+<@&1365086815144644698> 
+@here`
       );
     }
 
