@@ -94,10 +94,11 @@ if (message.guild) {
   }
 
 // ====================================
+// ====================================
 // CONFISSÃO POR DM
 // ====================================
 
-if (!message.guild) {
+if (message.channel.type === 1) {
 
   try {
 
@@ -127,13 +128,9 @@ ${confession}`
 
     console.log('✅ Confissão enviada');
 
-    try {
-      await message.author.send(
-        '✅ Sua confissão foi enviada anonimamente.'
-      );
-    } catch {
-      console.log('⚠️ Não consegui responder a DM');
-    }
+    await message.channel.send(
+      '✅ Sua confissão foi enviada anonimamente.'
+    );
 
   } catch (err) {
 
@@ -141,7 +138,6 @@ ${confession}`
     console.log(err);
   }
 }
-
   });
 
 // =========================
