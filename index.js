@@ -14,6 +14,8 @@ const {
 const CHANNEL_ID = "1370461259232837784";
 const CONFESSION_CHANNEL_ID = "1497866472439943308";
 const ROLE_ID = "1497852631018901626";
+const COUPLE_CHANNEL_ID = "ID_DO_CANAL";
+const COUPLE_ROLE_ID = "ID_DO_CARGO";
 
 // =========================
 // EXPRESS
@@ -256,6 +258,14 @@ console.log('ROLE ENCONTRADO:', role);
   }
 
 }, 60000);
+
+// =========================
+// CASAL DO DIA
+// =========================
+const members = guild.members.cache.filter(
+  member => !member.user.bot
+);
+let lastCouple = [];
 
 // =========================
 // LOGIN
