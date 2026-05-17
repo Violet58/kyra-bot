@@ -278,16 +278,16 @@ if (!guild) {
   console.log('❌ Servidor não encontrado');
   return;
 }
-  
-}
-}, 60000);
 
-const members = guild.members.cache.filter(
+  const members = guild.members.cache.filter(
   member => !member.user.bot
 );
 const membersArray = Array.from(
   members.values()
 );
+  
+}
+}, 60000);
 
 // =========================
 // LOGIN
