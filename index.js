@@ -297,6 +297,9 @@ const random2 = Math.floor(
   if (random1 === random2) {
   return;
   }
+
+  const couple1 = membersArray[random1];
+const couple2 = membersArray[random2];
   
 }
 }, 60000);
