@@ -300,6 +300,10 @@ const random2 = Math.floor(
 
   const couple1 = membersArray[random1];
 const couple2 = membersArray[random2];
+
+  console.log(
+  `💖 Casal sorteado: ${couple1.user.tag} + ${couple2.user.tag}`
+);
   
 }
 }, 60000);
