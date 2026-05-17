@@ -57,6 +57,7 @@ const client = new Client({
 
 let messageCount = {};
 let lastWinner = null;
+let lastCouple = [];
 
 // =========================
 // BOT ONLINE
@@ -262,10 +263,16 @@ console.log('ROLE ENCONTRADO:', role);
 // =========================
 // CASAL DO DIA
 // =========================
+
+const member = await guild.members
+      .fetch(topUser)
+      .catch(() => null);
+
 const members = guild.members.cache.filter(
   member => !member.user.bot
 );
-let lastCouple = [];
+
+
 
 // =========================
 // LOGIN
