@@ -293,6 +293,10 @@ const membersArray = Array.from(
 const random2 = Math.floor(
   Math.random() * membersArray.length
 );
+
+  if (random1 === random2) {
+  return;
+  }
   
 }
 }, 60000);
