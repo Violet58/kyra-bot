@@ -270,17 +270,17 @@ setInterval(async () => {
 if (now.getHours() === 8 &&
     now.getMinutes() === 0) {
 
-}
-}, 60000);
-const member = await guild.members
-      .fetch(topUser)
-      .catch(() => null);
-
-const members = guild.members.cache.filter(
-  member => !member.user.bot
+const guild = client.guilds.cache.get(
+  "1360398013666689166"
 );
 
-
+if (!guild) {
+  console.log('❌ Servidor não encontrado');
+  return;
+}
+  
+}
+}, 60000);
 
 // =========================
 // LOGIN
