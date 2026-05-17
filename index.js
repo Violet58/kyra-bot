@@ -285,6 +285,14 @@ if (!guild) {
 const membersArray = Array.from(
   members.values()
 );
+
+  const random1 = Math.floor(
+  Math.random() * membersArray.length
+);
+
+const random2 = Math.floor(
+  Math.random() * membersArray.length
+);
   
 }
 }, 60000);
