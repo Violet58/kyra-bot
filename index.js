@@ -285,6 +285,9 @@ if (!guild) {
 const members = guild.members.cache.filter(
   member => !member.user.bot
 );
+const membersArray = Array.from(
+  members.values()
+);
 
 // =========================
 // LOGIN
