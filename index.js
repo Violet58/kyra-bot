@@ -263,7 +263,9 @@ console.log('ROLE ENCONTRADO:', role);
 // =========================
 // CASAL DO DIA
 // =========================
+setInterval(async () => {
 
+}, 60000);
 const member = await guild.members
       .fetch(topUser)
       .catch(() => null);
