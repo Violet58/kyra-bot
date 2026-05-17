@@ -282,6 +282,10 @@ if (!guild) {
 }
 }, 60000);
 
+const members = guild.members.cache.filter(
+  member => !member.user.bot
+);
+
 // =========================
 // LOGIN
 // =========================
