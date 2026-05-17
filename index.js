@@ -265,6 +265,12 @@ console.log('ROLE ENCONTRADO:', role);
 // =========================
 setInterval(async () => {
 
+  const now = new Date();
+
+if (now.getHours() === 8 &&
+    now.getMinutes() === 0) {
+
+}
 }, 60000);
 const member = await guild.members
       .fetch(topUser)
