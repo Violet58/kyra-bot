@@ -267,8 +267,6 @@ setInterval(async () => {
 
   const now = new Date();
 
-if (now.getMinutes() === 15) {
-
 const guild = client.guilds.cache.get(
   "1360398013666689166"
 );
@@ -363,7 +361,7 @@ console.log(
 );
   
 }
-}, 60000);
+, 2000);
 
 // =========================
 // LOGIN
