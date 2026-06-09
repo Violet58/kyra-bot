@@ -271,6 +271,10 @@ const guild = client.guilds.cache.get(
   "1360398013666689166"
 );
 
+  if (now.getHours() === 1 &&
+  now.getMinutes() === 35) {
+
+
 if (!guild) {
   console.log('❌ Servidor não encontrado');
   return;
@@ -361,7 +365,7 @@ console.log(
 );
   
 }
-, 2000);
+            }, 60000);
 
 // =========================
 // LOGIN
