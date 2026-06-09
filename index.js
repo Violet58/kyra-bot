@@ -279,30 +279,88 @@ if (!guild) {
   return;
 }
 
-  const members = guild.members.cache.filter(
+const members = guild.members.cache.filter(
   member => !member.user.bot
 );
+
 const membersArray = Array.from(
   members.values()
 );
 
-  const random1 = Math.floor(
-  Math.random() * membersArray.length
-);
-
-const random2 = Math.floor(
-  Math.random() * membersArray.length
-);
-
-  if (random1 === random2) {
+if (membersArray.length < 2) {
+  console.log('❌ Membros insuficientes');
   return;
-  }
+}
 
-  const couple1 = membersArray[random1];
+const random1 = Math.floor(
+  Math.random() * membersArray.length
+);
+
+let random2 = Math.floor(
+  Math.random() * membersArray.length
+);
+
+while (random1 === random2) {
+  random2 = Math.floor(
+    Math.random() * membersArray.length
+  );
+}
+
+const couple1 = membersArray[random1];
 const couple2 = membersArray[random2];
 
-  console.log(
-  `💖 Casal sorteado: ${couple1.user.tag} + ${couple2.user.tag}`
+// Remove cargo do casal antigo
+
+for (const userId of lastCouple) {
+
+  const oldMember = await guild.members
+    .fetch(userId)
+    .catch(() => null);
+
+  if (oldMember) {
+
+    await oldMember.roles
+      .remove(COUPLE_ROLE_ID)
+      .catch(() => {});
+  }
+}
+
+// Adiciona cargo ao novo casal
+
+await couple1.roles
+  .add(COUPLE_ROLE_ID)
+  .catch(() => {});
+
+await couple2.roles
+  .add(COUPLE_ROLE_ID)
+  .catch(() => {});
+
+// Salva novo casal
+
+lastCouple = [
+  couple1.id,
+  couple2.id
+];
+
+// Envia mensagem
+
+const channel = await client.channels
+  .fetch(COUPLE_CHANNEL_ID)
+  .catch(() => null);
+
+if (channel) {
+
+  await channel.send(
+`# 💖 Casal do Dia!
+
+💞 ${couple1} + ${couple2}
+
+Que a sorte dos algoritmos esteja com vocês hoje ✨`
+  );
+}
+
+console.log(
+  `💖 Casal do dia: ${couple1.user.tag} + ${couple2.user.tag}`
 );
   
 }
